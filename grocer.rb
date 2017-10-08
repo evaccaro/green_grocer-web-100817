@@ -16,7 +16,7 @@ def apply_coupons(cart, coupons)
       cart["#{coupons[0][:item]} W/COUPON"] = {:price => coupons[0][:cost], :clearance => cart[coupons[0][:item]][:clearance], :count => 1}
       cart.delete(coupons[0][:item])
     else
-      cart[coupons[:item]][:count] = cart[coupons[0][:item]][:count] - coupons[0][:num]
+      cart[coupons[0][:item]][:count] = cart[coupons[0][:item]][:count] - coupons[0][:num]
       cart["#{coupons[:item]} W/COUPON"] = {:price => coupons[0][:cost], :clearance => cart[coupons[0][:item]][:clearance], :count => 1}
   end
 end
