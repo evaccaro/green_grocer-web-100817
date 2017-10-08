@@ -10,17 +10,19 @@ def consolidate_cart(cart)
     new_cart
 end
 
-def apply_coupons(cart, coupons)
-  if cart.include?(coupons[0][:item])
-    if cart[coupons[0][:item]][:count] == coupons[0][:num]
-      cart["#{coupons[0][:item]} W/COUPON"] = {:price => coupons[0][:cost], :clearance => cart[coupons[0][:item]][:clearance], :count => 1}
-      cart.delete(coupons[0][:item])
-    else
-      cart[coupons[0][:item]][:count] = cart[coupons[0][:item]][:count] - coupons[0][:num]
-      cart["#{coupons[:item]} W/COUPON"] = {:price => coupons[0][:cost], :clearance => cart[coupons[0][:item]][:clearance], :count => 1}
+def apply_coupons(cart, coupons_arr)
+  coupons_arr.each do |coupons|
+  if cart.include?(coupons[:item])
+    if cart[coupons[:item]][:count] == coupons[:num]
+      cart["#{coupons[:item]} W/COUPON"] = {:price => coupons[:cost], :clearance => cart[coupons[:item]][:clearance], :count => 1}
+      cart.delete(coupons[:item])
+    else 
+      cart[coupons[:item]][:count] = cart[coupons[:item]][:count] - coupons[:num]
+      cart["#{coupons[:item]} W/COUPON"] = {:price => coupons[:cost], :clearance => cart[coupons[:item]][:clearance], :count => 1}
   end
 end
-    cart
+end
+    cart 
 end
 
 def apply_clearance(cart)
